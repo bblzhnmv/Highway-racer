@@ -480,17 +480,14 @@ export class GameEngine {
   }
 
   // ──────────────────────────────────────────────────── camera
+
  private updateCamera(_dt: number) {
   const px = this.player.x;
   const pz = this.player.worldZ;
 
-  const targetX = px;
-  const targetY = CAMERA_HEIGHT;
-  const targetZ = pz + CAMERA_BEHIND;
-
-  this.camera.position.x += (targetX - this.camera.position.x) * CAMERA_LERP;
-  this.camera.position.y += (targetY - this.camera.position.y) * CAMERA_LERP;
-  this.camera.position.z += (targetZ - this.camera.position.z) * CAMERA_LERP;
+  this.camera.position.x = px;
+  this.camera.position.y = CAMERA_HEIGHT;
+  this.camera.position.z = pz + CAMERA_BEHIND;
 
   const speedFrac = (this.player.speed - PLAYER_MIN_SPEED) / (PLAYER_MAX_SPEED - PLAYER_MIN_SPEED);
   if (speedFrac > 0.3) {
@@ -499,8 +496,9 @@ export class GameEngine {
     this.camera.position.y += (Math.random() - 0.5) * shake * 0.4;
   }
 
-  this.camera.lookAt(px * 0.2, 0.5, pz - 6);
+  this.camera.lookAt(px, 0.5, pz);
 }
+
    
   
 
