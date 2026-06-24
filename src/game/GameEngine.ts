@@ -499,7 +499,7 @@ export class GameEngine {
     this.camera.position.y += (Math.random() - 0.5) * shake * 0.4;
   }
 
-  this.camera.lookAt(px * 0.2, 0.7, pz - 14);
+  this.camera.lookAt(px * 0.2, 0.5, pz - 6);
 }
    
   
