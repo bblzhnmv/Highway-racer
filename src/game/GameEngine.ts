@@ -452,7 +452,7 @@ export class GameEngine {
 
       // Camera shake at high speed
       const speedFrac = (this.player.speed - PLAYER_MIN_SPEED) / (PLAYER_MAX_SPEED - PLAYER_MIN_SPEED);
-      this.shakeAmount = speedFrac * speedFrac * 0.045;
+      
 
       // Engine sound
       this.sounds.updateEngine(speedFrac);
@@ -480,34 +480,29 @@ export class GameEngine {
   }
 
   // ──────────────────────────────────────────────────── camera
-  private updateCamera(_dt: number) {
-    const px = this.player.x;
-    const pz = this.player.worldZ;
+ private updateCamera(_dt: number) {
+  const px = this.player.x;
+  const pz = this.player.worldZ;
 
-    // FOV is fixed — widening it at speed makes the car appear to shrink/recede.
-    // Speed immersion comes from camera shake only; do not touch FOV here.
+  const targetX = px;
+  const targetY = CAMERA_HEIGHT;
+  const targetZ = pz + CAMERA_BEHIND;
 
-    // Target camera position — strictly fixed offset behind and above player
-    const targetX = px;
-    const targetY = CAMERA_HEIGHT;
-    const targetZ = pz + CAMERA_BEHIND;
+  this.camera.position.x += (targetX - this.camera.position.x) * CAMERA_LERP;
+  this.camera.position.y += (targetY - this.camera.position.y) * CAMERA_LERP;
+  this.camera.position.z += (targetZ - this.camera.position.z) * CAMERA_LERP;
 
-    this.camera.position.x += (targetX - this.camera.position.x) * CAMERA_LERP;
-    this.camera.position.y += (targetY - this.camera.position.y) * CAMERA_LERP;
-    this.camera.position.z += (targetZ - this.camera.position.z) * CAMERA_LERP;
-
-    // Camera shake
-    if (this.shakeAmount > 0) {
-      this.camera.position.x += (Math.random() - 0.5) * this.shakeAmount;
-      this.camera.position.y += (Math.random() - 0.5) * this.shakeAmount * 0.5;
-    }
-
-    this.camera.lookAt(
-      px * 0.2,
-      0.7,
-      pz - 14,
-    );
+  const speedFrac = (this.player.speed - PLAYER_MIN_SPEED) / (PLAYER_MAX_SPEED - PLAYER_MIN_SPEED);
+  if (speedFrac > 0.3) {
+    const shake = (speedFrac - 0.3) * 0.06;
+    this.camera.position.x += (Math.random() - 0.5) * shake;
+    this.camera.position.y += (Math.random() - 0.5) * shake * 0.4;
   }
+
+  this.camera.lookAt(px * 0.2, 0.7, pz - 14);
+}
+   
+  
 
   // ──────────────────────────────────────────────────── game-over
   private handleGameOver() {
