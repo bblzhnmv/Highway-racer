@@ -22,8 +22,8 @@ export const PLAYER_AUTO_ACCEL = 2.2;
 export const LANE_CHANGE_SPEED = 6.5;  // lateral lerp rate
 
 // Camera
-export const CAMERA_HEIGHT = 4.2;
-export const CAMERA_BEHIND = 9.5;
+export const CAMERA_HEIGHT = 3.2;
+export const CAMERA_BEHIND = 6.0;
 export const CAMERA_LERP   = 0.08;
 
 // Traffic pool
