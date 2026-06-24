@@ -32,7 +32,7 @@ export class Player {
       const model = gltf.scene;
 
       // Масштабируем и позиционируем модель
-      model.scale.set(0.012, 0.012, 0.012);
+      model.scale.set(1.2, 1.2, 1.2);
       model.rotation.y = Math.PI;
       model.position.set(0, 0, 0);
 
