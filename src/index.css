@@ -19,3 +19,260 @@ canvas {
   position: relative;
   background: #000;
 }
+
+.hud-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(160deg, rgba(0,0,0,0.82) 0%, rgba(10,20,40,0.88) 100%);
+  color: #fff;
+  gap: 1.1rem;
+  user-select: none;
+  z-index: 10;
+}
+
+.hud-title {
+  font-size: clamp(2.8rem, 8vw, 5.5rem);
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-align: center;
+  line-height: 1.1;
+  color: #fff;
+  margin: 0;
+}
+
+.hud-btn {
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  font-size: 1.05rem;
+  padding: 0.82rem 2.6rem;
+}
+
+.primary-btn {
+  background: linear-gradient(135deg, #f0b000 0%, #e05000 100%);
+  color: #fff;
+}
+
+.hud-subtitle {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.7);
+  margin: 0;
+}
+
+.score-popup {
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+  animation: popupFly 1.8s ease-out forwards;
+}
+
+@keyframes popupFly {
+  0%   { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-80px); opacity: 0; }
+}
+
+.speedometer-wrap {
+  position: absolute;
+  bottom: 1.4rem;
+  left: 1.4rem;
+  width: 120px;
+  height: 120px;
+}
+
+.speedometer-inner {
+  position: absolute;
+  inset: 12px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.72);
+  border: 1px solid rgba(255,255,255,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.speed-number {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #fff;
+}
+
+.speed-unit {
+  font-size: 0.62rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.55);
+}
+
+.hud-score-box {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  background: rgba(0,0,0,0.55);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 10px;
+  padding: 0.65rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.32rem;
+  min-width: 130px;
+}
+
+.hud-score-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.2rem;
+}
+
+.hud-score-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.45);
+}
+
+.hud-score-val {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #fff;
+}
+
+.best-colour { color: #ffd000; }
+
+.hud-pause-btn {
+  position: absolute;
+  top: 1.2rem;
+  left: 1.2rem;
+  background: rgba(0,0,0,0.5);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 8px;
+  color: rgba(255,255,255,0.7);
+  font-size: 1.2rem;
+  width: 2.4rem;
+  height: 2.4rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.semi-overlay {
+  background: rgba(0,0,0,0.55);
+}
+
+.score-display {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  padding: 1rem 2rem;
+  min-width: 220px;
+}
+
+.score-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.score-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.5);
+}
+
+.score-value {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #fff;
+}
+
+.controls-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.42rem;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  padding: 0.9rem 1.5rem;
+}
+
+.control-row {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.78);
+}
+
+.key {
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.22);
+  border-radius: 6px;
+  padding: 0.18rem 0.55rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  min-width: 2.6rem;
+  text-align: center;
+}
+
+.scoring-hints {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.55);
+  max-width: 340px;
+  text-align: center;
+}
+
+.paused-title {
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: #fff;
+}
+
+.secondary-btn {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.25);
+  color: rgba(255,255,255,0.85);
+}
+
+.new-best-banner {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #ffd000;
+}
+
+.best-score-badge {
+  background: rgba(255,200,0,0.15);
+  border: 1px solid rgba(255,200,0,0.45);
+  padding: 0.3rem 1.1rem;
+  border-radius: 100px;
+  font-size: 1.0rem;
+  font-weight: 700;
+  color: #ffd000;
+}
+
+.speedometer-arc-bg {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(rgba(255,255,255,0.08) 270deg, transparent 0deg);
+  rotate: 135deg;
+}
+
+.speedometer-arc {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  rotate: 135deg;
+}
