@@ -32,9 +32,9 @@ export class Player {
       const model = gltf.scene;
 
       // Масштабируем и позиционируем модель
-      model.scale.set(0.6, 0.6, 0.6);
+      model.scale.set(0.05, 0.05, 0.05);
       model.rotation.y = Math.PI;
-      model.position.set(0, -1, 0);
+      model.position.set(0, -5, 0);
 
       model.traverse((child) => {
         if ((child as THREE.Mesh).isMesh) {
