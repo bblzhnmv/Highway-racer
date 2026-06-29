@@ -123,9 +123,21 @@ export function createPlayerMesh(color: string): THREE.Group {
 }
 
 // ─────────────────────────────────────────────────────────────
-//  TRAFFIC – sedan
+//  TRAFFIC – sedan (GLB model)
 // ─────────────────────────────────────────────────────────────
 function createSedan(color: string): THREE.Group {
+  const model = getModel('sedan');
+  if (model) {
+    model.scale.set(0.02, 0.02, 0.02);
+    model.rotation.y = 0;
+    model.position.set(0, 0, 0);
+    return model;
+  }
+  // Fallback to procedural if model not loaded
+  return createProceduralSedan(color);
+}
+
+function createProceduralSedan(color: string): THREE.Group {
   const g = new THREE.Group();
   const mat = bodyMat(color);
 
@@ -156,9 +168,20 @@ function createSedan(color: string): THREE.Group {
 }
 
 // ─────────────────────────────────────────────────────────────
-//  TRAFFIC – hatchback
+//  TRAFFIC – hatchback (GLB model - Toyota Hilux)
 // ─────────────────────────────────────────────────────────────
 function createHatchback(color: string): THREE.Group {
+  const model = getModel('hatchback');
+  if (model) {
+    model.scale.set(0.02, 0.02, 0.02);
+    model.rotation.y = 0;
+    model.position.set(0, 0, 0);
+    return model;
+  }
+  return createProceduralHatchback(color);
+}
+
+function createProceduralHatchback(color: string): THREE.Group {
   const g = new THREE.Group();
   const mat = bodyMat(color);
 
@@ -189,9 +212,20 @@ function createHatchback(color: string): THREE.Group {
 }
 
 // ─────────────────────────────────────────────────────────────
-//  TRAFFIC – SUV / pickup
+//  TRAFFIC – SUV (GLB model)
 // ─────────────────────────────────────────────────────────────
 function createSUV(color: string): THREE.Group {
+  const model = getModel('suv');
+  if (model) {
+    model.scale.set(0.02, 0.02, 0.02);
+    model.rotation.y = 0;
+    model.position.set(0, 0, 0);
+    return model;
+  }
+  return createProceduralSUV(color);
+}
+
+function createProceduralSUV(color: string): THREE.Group {
   const g = new THREE.Group();
   const mat = bodyMat(color);
 
@@ -209,7 +243,6 @@ function createSUV(color: string): THREE.Group {
     const sw = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.48, 1.9), glassMat);
     sw.position.set(sx, 1.34, -0.2); g.add(sw);
   }
-  // Roof rack
   const rack = new THREE.Mesh(new THREE.BoxGeometry(1.8, 0.06, 2.2), darkMat);
   rack.position.set(0, 1.84, -0.2); g.add(rack);
   for (const rz of [-0.9, 0, 0.9]) {
