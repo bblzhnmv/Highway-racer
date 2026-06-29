@@ -310,34 +310,50 @@ export class GameEngine {
     this.particles = new ParticleSystem(this.scene);
     this.sounds    = new SoundEngine();
 
-    this.traffic = new TrafficManager(this.scene, (pts, label) => {
-      if (this.gameState !== 'playing') return;
+        // Load GLB models BEFORE creating traffic
+    preloadModels().then(() => {
+      console.log('✅ All models loaded');
+      
+      // Создаём TrafficManager ПОСЛЕ загрузки моделей
+      this.traffic = new TrafficManager(this.scene, (pts, label) => {
+        if (this.gameState !== 'playing') return;
 
-      // Combo multiplier
-      this.comboTimer = this.COMBO_WINDOW;
-      this.combo++;
-      const multiplier = Math.min(this.combo, 8);
-      const earned     = pts * multiplier;
-      this.score += earned;
+        // Combo multiplier
+        this.comboTimer = this.COMBO_WINDOW;
+        this.combo++;
+        const multiplier = Math.min(this.combo, 8);
+        const earned     = pts * multiplier;
+        this.score += earned;
 
-      const displayLabel = multiplier > 1
-        ? `${label ?? `+${pts}`} ×${multiplier}`
-        : (label ?? `+${pts}`);
+        const displayLabel = multiplier > 1
+          ? `${label ?? `+${pts}`} ×${multiplier}`
+          : (label ?? `+${pts}`);
 
-      this.pushEvent(displayLabel);
+        this.pushEvent(displayLabel);
 
-      // Play horn sound on near miss
-      if (pts >= 50) this.sounds.playHorn();
+        // Play horn sound on near miss
+        if (pts >= 50) this.sounds.playHorn();
+      });
+      
+      this.traffic.spawnInitial(this.player.worldZ);
+    }).catch((err) => {
+      console.error('❌ Failed to load models:', err);
+      // Fallback: создаём без GLB моделей
+      this.traffic = new TrafficManager(this.scene, (pts, label) => {
+        if (this.gameState !== 'playing') return;
+        this.comboTimer = this.COMBO_WINDOW;
+        this.combo++;
+        const multiplier = Math.min(this.combo, 8);
+        const earned     = pts * multiplier;
+        this.score += earned;
+        const displayLabel = multiplier > 1
+          ? `${label ?? `+${pts}`} ×${multiplier}`
+          : (label ?? `+${pts}`);
+        this.pushEvent(displayLabel);
+        if (pts >= 50) this.sounds.playHorn();
+      });
+      this.traffic.spawnInitial(this.player.worldZ);
     });
-
-    // Load GLB models before spawning traffic
-preloadModels().then(() => {
-  console.log('✅ All models loaded');
-  this.traffic.spawnInitial(this.player.worldZ);
-}).catch((err) => {
-  console.error('❌ Failed to load models:', err);
-  this.traffic.spawnInitial(this.player.worldZ);
-});
 
     window.addEventListener('resize', this.handleResize);
     this.beginLoop();
