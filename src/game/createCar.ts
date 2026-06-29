@@ -173,8 +173,8 @@ function createProceduralSedan(color: string): THREE.Group {
 function createHatchback(color: string): THREE.Group {
   const model = getModel('hatchback');
   if (model) {
-    model.scale.set(0.03, 0.03, 0.03);
-    model.rotation.y = Math.PI;
+    model.scale.set(0.02, 0.02, 0.02);
+    model.rotation.y = 0;
     model.position.set(0, -1.1, 0);
     return model;
   }
