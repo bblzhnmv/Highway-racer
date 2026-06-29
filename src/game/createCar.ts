@@ -1,3 +1,4 @@
+import { getModel } from './modelLoader';
 import * as THREE from 'three';
 import { VehicleType } from './constants';
 
