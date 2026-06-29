@@ -174,7 +174,7 @@ function createHatchback(color: string): THREE.Group {
   const model = getModel('hatchback');
   if (model) {
     model.scale.set(0.02, 0.02, 0.02);
-    model.rotation.y = 0;
+    model.rotation.y = Math.PI;
     model.position.set(0, 0, 0);
     return model;
   }
