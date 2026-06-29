@@ -330,7 +330,14 @@ export class GameEngine {
       if (pts >= 50) this.sounds.playHorn();
     });
 
-    this.traffic.spawnInitial(this.player.worldZ);
+    // Load GLB models before spawning traffic
+preloadModels().then(() => {
+  console.log('✅ All models loaded');
+  this.traffic.spawnInitial(this.player.worldZ);
+}).catch((err) => {
+  console.error('❌ Failed to load models:', err);
+  this.traffic.spawnInitial(this.player.worldZ);
+});
 
     window.addEventListener('resize', this.handleResize);
     this.beginLoop();
