@@ -1,3 +1,4 @@
+import { preloadModels } from './modelLoader';
 import * as THREE from 'three';
 import { Controls } from './controls';
 import { Road } from './road';
