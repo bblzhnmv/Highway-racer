@@ -128,7 +128,7 @@ export function createPlayerMesh(color: string): THREE.Group {
 function createSedan(color: string): THREE.Group {
   const model = getModel('sedan');
   if (model) {
-    model.scale.set(0.1, 0.1, 0.1);
+    model.scale.set(1.0 1.0, 1.0);
     model.rotation.y = 0;
     model.position.set(0, 0, 0);
     return model;
@@ -173,8 +173,8 @@ function createProceduralSedan(color: string): THREE.Group {
 function createHatchback(color: string): THREE.Group {
   const model = getModel('hatchback');
   if (model) {
-    model.scale.set(0.05, 0.05, 0.05);
-    model.rotation.y = Math.PI;
+    model.scale.set(0.01, 0.01, 0.01);
+    model.rotation.y = 0;
     model.position.set(0, -1, 0);
     return model;
   }
@@ -217,7 +217,7 @@ function createProceduralHatchback(color: string): THREE.Group {
 function createSUV(color: string): THREE.Group {
   const model = getModel('suv');
   if (model) {
-    model.scale.set(0.1, 0.1, 0.1);
+    model.scale.set(1.0, 1.0, 1.0);
     model.rotation.y = 0;
     model.position.set(0, 0, 0);
     return model;
