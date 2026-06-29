@@ -128,7 +128,7 @@ export function createPlayerMesh(color: string): THREE.Group {
 function createSedan(color: string): THREE.Group {
   const model = getModel('sedan');
   if (model) {
-    model.scale.set(1.0 1.0, 1.0);
+    model.scale.set(1.0, 1.0, 1.0);
     model.rotation.y = 0;
     model.position.set(0, 0, 0);
     return model;
